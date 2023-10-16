@@ -23,17 +23,23 @@ service Greeter {
 }
 
 message GreeterState {
-  repeated string greetings = 2;
+  repeated string greetings = 1;
+  int32 greetInt = 2;
+  bool isChecked = 3;
 }
 
 message GreetingsRequest {}
 
 message GreetingsResponse {
   repeated string greetings = 1;
+  int32 greetInt = 2;
+  bool isChecked = 3;
 }
 
 message GreetRequest {
   string greeting = 1;  // E.g. "Hello, World".
+  int32 greetInt = 2;
+  bool isChecked = 3;
 }
 
 message GreetResponse {

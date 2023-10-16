@@ -18,7 +18,12 @@ class GreeterServicer(Greeter.Interface):
         state: GreeterState,
         request: GreetingsRequest,
     ) -> GreetingsResponse:
-        return GreetingsResponse(greetings=state.greetings)
+        print('request: ', request)
+        print('context:', context)
+        return GreetingsResponse(
+            greetings=state.greetings,
+            greetInt=state.greetInt
+            )
 
     async def Greet(
         self,
@@ -28,4 +33,7 @@ class GreeterServicer(Greeter.Interface):
     ) -> Greeter.GreetEffects:
         greeting = request.greeting
         state.greetings.extend([greeting])
+        state.greetInt = request.greetInt
+        state.isChecked = request.isChecked
+        print('state: ', state)
         return Greeter.GreetEffects(state=state, response=GreetResponse())
